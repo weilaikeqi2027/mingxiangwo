@@ -1,0 +1,22 @@
+{
+  "name": "每日冥想 · 静心",
+  "short_name": "每日冥想",
+  "description": "专注、放松、睡眠、感恩——四款冥想音频，助你静心",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#1a1a2e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%234A6FA5' width='192' height='192' rx='48'/%3E%3Ctext x='96' y='120' font-size='80' text-anchor='middle'%3E🧘%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect fill='%234A6FA5' width='512' height='512' rx='128'/%3E%3Ctext x='256' y='320' font-size='220' text-anchor='middle'%3E🧘%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
