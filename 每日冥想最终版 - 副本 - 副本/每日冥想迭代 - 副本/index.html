@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="每日冥想">
+  <title>每日冥想 · 静心</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%234A6FA5' width='192' height='192' rx='48'/%3E%3Ctext x='96' y='120' font-size='80' text-anchor='middle'%3E🧘%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+  <canvas id="particle-canvas"></canvas>
+
+  <div class="app-container">
+    <!-- Home Page -->
+    <div class="page active" id="homePage">
+      <div class="home-header">
+        <h1 class="home-title">每日冥想</h1>
+        <p class="home-subtitle">静心 · 专注 · 放松</p>
+      </div>
+
+      <!-- 手表连接区 -->
+      <div class="watch-panel">
+        <div class="watch-info">
+          <span class="watch-icon">⌚</span>
+          <span class="watch-status" id="watchStatus">断开 🔴</span>
+        </div>
+        <button class="watch-btn" id="watchConnectBtn">
+          <span id="watchBtnText">连接手表</span>
+        </button>
+      </div>
+
+      <!-- 统计面板 -->
+      <div class="stats-panel">
+        <div class="stat-item">
+          <div class="stat-value" id="streakDays">0</div>
+          <div class="stat-label">连续天数</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-value" id="totalMinutes">0</div>
+          <div class="stat-label">累计分钟</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-value" id="totalSessions">0</div>
+          <div class="stat-label">冥想次数</div>
+        </div>
+      </div>
+
+      <!-- 今日推荐 -->
+      <div class="recommendation-section">
+        <div class="section-label">今日推荐</div>
+        <div class="recommendation-list" id="recommendationList">
+          <div class="rec-card-placeholder">
+            <span class="loading-dots">正在分析健康数据</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="audio-grid">
+        <div class="audio-card" data-type="guqin">
+          <span class="audio-icon">🧘</span>
+          <div class="audio-name">专注冥想</div>
+          <div class="audio-desc">古琴 · 提升专注</div>
+        </div>
+        <div class="audio-card" data-type="yushan">
+          <span class="audio-icon">🌸</span>
+          <div class="audio-name">放松冥想</div>
+          <div class="audio-desc">雨声 · 释放压力</div>
+        </div>
+        <div class="audio-card" data-type="shuinian">
+          <span class="audio-icon">🌙</span>
+          <div class="audio-name">睡眠冥想</div>
+          <div class="audio-desc">禅音 · 安然入眠</div>
+        </div>
+        <div class="audio-card" data-type="yinchang">
+          <span class="audio-icon">🙏</span>
+          <div class="audio-name">感恩冥想</div>
+          <div class="audio-desc">吟唱 · 心怀感恩</div>
+        </div>
+      </div>
+
+      <div class="duration-section">
+        <div class="section-label">选择时长</div>
+        <div class="duration-dots">
+          <div class="duration-dot active" data-duration="5">
+            <div class="dot"></div>
+            <div class="label">5分钟</div>
+          </div>
+          <div class="duration-dot" data-duration="10">
+            <div class="dot"></div>
+            <div class="label">10分钟</div>
+          </div>
+          <div class="duration-dot" data-duration="15">
+            <div class="dot"></div>
+            <div class="label">15分钟</div>
+          </div>
+          <div class="duration-dot" data-duration="20">
+            <div class="dot"></div>
+            <div class="label">20分钟</div>
+          </div>
+          <div class="duration-dot" data-duration="30">
+            <div class="dot"></div>
+            <div class="label">30分钟</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="start-button" id="startBtn">开始冥想</button>
+
+      <div class="poem-section">
+        <div class="poem-text" id="poemText">静坐无所为，春来草自青。</div>
+        <div class="poem-author" id="poemAuthor">——仓央嘉措</div>
+      </div>
+    </div>
+
+    <!-- Session Page -->
+    <div class="page session-page" id="sessionPage">
+      <button class="session-back" id="backBtn">←</button>
+
+      <div class="breathing-container">
+        <div class="breathing-glow"></div>
+        <div class="breathing-ring breathing-ring-1"></div>
+        <div class="breathing-ring breathing-ring-2"></div>
+        <div class="breathing-ring breathing-ring-3"></div>
+        <div class="breathing-core">
+          <span class="breathing-text" id="breathingText">吸气</span>
+        </div>
+      </div>
+
+      <div class="session-timer" id="sessionTimer">10:00</div>
+      <div class="session-guidance" id="sessionGuidance">专注于呼吸，让心灵回归平静</div>
+
+      <div class="session-controls">
+        <button class="session-btn" id="pauseBtn">⏸</button>
+      </div>
+    </div>
+
+    <!-- Emotion Before Page -->
+    <div class="page emotion-page" id="emotionBeforePage">
+      <div class="emotion-header">
+        <h2 class="emotion-title">冥想前的心情</h2>
+        <p class="emotion-subtitle">选择你当前的情绪状态</p>
+      </div>
+      <div class="emotion-grid">
+        <div class="emotion-card" data-emotion="stress" data-score="1">
+          <span class="emotion-emoji">😫</span>
+          <span class="emotion-name">焦虑</span>
+        </div>
+        <div class="emotion-card" data-emotion="tired" data-score="2">
+          <span class="emotion-emoji">😴</span>
+          <span class="emotion-name">疲惫</span>
+        </div>
+        <div class="emotion-card" data-emotion="neutral" data-score="3">
+          <span class="emotion-emoji">😐</span>
+          <span class="emotion-name">平静</span>
+        </div>
+        <div class="emotion-card" data-emotion="calm" data-score="4">
+          <span class="emotion-emoji">😌</span>
+          <span class="emotion-name">放松</span>
+        </div>
+        <div class="emotion-card" data-emotion="happy" data-score="5">
+          <span class="emotion-emoji">😊</span>
+          <span class="emotion-name">愉悦</span>
+        </div>
+      </div>
+      <button class="emotion-skip" id="skipBeforeEmotion">跳过</button>
+    </div>
+
+    <!-- Emotion After Page -->
+    <div class="page emotion-page" id="emotionAfterPage">
+      <div class="emotion-header">
+        <h2 class="emotion-title">冥想后的心情</h2>
+        <p class="emotion-subtitle">感受内心的变化</p>
+      </div>
+      <div class="emotion-grid">
+        <div class="emotion-card" data-emotion="stress" data-score="1">
+          <span class="emotion-emoji">😫</span>
+          <span class="emotion-name">焦虑</span>
+        </div>
+        <div class="emotion-card" data-emotion="tired" data-score="2">
+          <span class="emotion-emoji">😴</span>
+          <span class="emotion-name">疲惫</span>
+        </div>
+        <div class="emotion-card" data-emotion="neutral" data-score="3">
+          <span class="emotion-emoji">😐</span>
+          <span class="emotion-name">平静</span>
+        </div>
+        <div class="emotion-card" data-emotion="calm" data-score="4">
+          <span class="emotion-emoji">😌</span>
+          <span class="emotion-name">放松</span>
+        </div>
+        <div class="emotion-card" data-emotion="happy" data-score="5">
+          <span class="emotion-emoji">😊</span>
+          <span class="emotion-name">愉悦</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result Page -->
+    <div class="page result-page" id="resultPage">
+      <div class="result-header">
+        <h2 class="result-title">冥想完成</h2>
+        <div class="result-badge">🎉</div>
+      </div>
+
+      <div class="result-stats">
+        <div class="result-stat">
+          <div class="result-stat-value" id="resultDuration">10</div>
+          <div class="result-stat-label">冥想时长(分钟)</div>
+        </div>
+        <div class="result-stat">
+          <div class="result-stat-value" id="resultStreak">3</div>
+          <div class="result-stat-label">连续天数</div>
+        </div>
+      </div>
+
+      <div class="emotion-comparison">
+        <div class="emotion-before">
+          <div class="emotion-label">冥想前</div>
+          <div class="emotion-display" id="beforeEmotionDisplay">😫 焦虑</div>
+        </div>
+        <div class="emotion-arrow">→</div>
+        <div class="emotion-after">
+          <div class="emotion-label">冥想后</div>
+          <div class="emotion-display" id="afterEmotionDisplay">😌 放松</div>
+        </div>
+      </div>
+
+      <div class="emotion-change" id="emotionChange">
+        <span class="change-icon">📈</span>
+        <span class="change-text">情绪提升了 3 级！</span>
+      </div>
+
+      <button class="result-button" id="resultHomeBtn">返回首页</button>
+    </div>
+
+    <!-- Health Dashboard Page -->
+    <div class="page health-page" id="healthPage">
+      <div class="health-header">
+        <h2 class="health-title">健康仪表盘</h2>
+        <p class="health-subtitle">实时运动数据监测</p>
+      </div>
+
+      <div class="health-dashboard">
+        <div class="dash-card">
+          <span class="dash-icon">👣</span>
+          <div class="dash-value" id="dashSteps">0</div>
+          <div class="dash-label">今日步数</div>
+        </div>
+        <div class="dash-card">
+          <span class="dash-icon">🔥</span>
+          <div class="dash-value" id="dashCalories">0</div>
+          <div class="dash-label">卡路里</div>
+        </div>
+        <div class="dash-card">
+          <span class="dash-icon">❤️</span>
+          <div class="dash-value" id="dashHeartRate">0</div>
+          <div class="dash-label">实时心率</div>
+        </div>
+      </div>
+
+      <div class="chart-section">
+        <div class="chart-card">
+          <canvas id="stepsChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <canvas id="caloriesChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <canvas id="compareChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div class="page profile-page" id="profilePage">
+      <div class="profile-header">
+        <h2 class="profile-title">我的</h2>
+      </div>
+
+      <div class="profile-stats">
+        <div class="profile-stat-card">
+          <div class="profile-stat-value" id="profileCheckins">0</div>
+          <div class="profile-stat-label">健康打卡</div>
+        </div>
+        <div class="profile-stat-card">
+          <div class="profile-stat-value" id="profileTotalSessions">0</div>
+          <div class="profile-stat-label">冥想次数</div>
+        </div>
+      </div>
+
+      <div class="report-section">
+        <div class="section-label">健康报告</div>
+        <div class="report-card" id="healthReport">
+          <div class="report-placeholder">暂无数据，连接手表后自动生成</div>
+        </div>
+        <button class="share-btn" id="shareReportBtn">分享报告</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Health Alert -->
+  <div class="health-alert" id="healthAlert">
+    <div class="alert-content">
+      <div class="alert-title">今日运动量不足</div>
+      <div class="alert-message">推荐 10 分钟放松冥想</div>
+      <button class="alert-action">立即开始</button>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav" id="bottomNav">
+    <div class="nav-item active" id="homeNav">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">首页</span>
+    </div>
+    <div class="nav-item" id="healthNav">
+      <span class="nav-icon">📊</span>
+      <span class="nav-label">健康</span>
+    </div>
+    <div class="nav-item" id="profileNav">
+      <span class="nav-icon">👤</span>
+      <span class="nav-label">我的</span>
+    </div>
+  </nav>
+
+  <!-- Mini Player -->
+  <div class="mini-player" id="miniPlayer">
+    <div class="mini-info">
+      <div class="mini-track" id="miniTrack">请选择冥想类型</div>
+      <div class="mini-progress">
+        <div class="mini-progress-bar" id="miniProgress"></div>
+      </div>
+    </div>
+    <div class="mini-controls">
+      <button class="mini-btn" id="miniPrev">⏮</button>
+      <button class="mini-btn play" id="miniPlay">▶</button>
+      <button class="mini-btn" id="miniNext">⏭</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="./js/AudioEngine.js"></script>
+  <script src="./js/VisualTheme.js"></script>
+  <script src="./js/ParticleSystem.js"></script>
+  <script src="./js/BreathingGuide.js"></script>
+  <script src="./js/Timer.js"></script>
+  <script src="./js/GestureController.js"></script>
+  <script src="./js/Stats.js"></script>
+  <script src="./js/SmartWatch.js"></script>
+  <script src="./js/HealthData.js"></script>
+  <script src="./js/SmartRecommendation.js"></script>
+  <script src="./js/HealthCharts.js"></script>
+  <script src="./js/UI.js"></script>
+  <script src="./js/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((registration) => {
+            console.log('Service Worker 注册成功:', registration.scope);
+          })
+          .catch((error) => {
+            console.log('Service Worker 注册失败:', error);
+          });
+      });
+    }
+  </script>
+</body>
+</html>

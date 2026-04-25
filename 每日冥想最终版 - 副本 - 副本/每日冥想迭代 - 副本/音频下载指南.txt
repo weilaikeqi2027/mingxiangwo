@@ -1,0 +1,95 @@
+# 音频文件下载指南
+
+## 🎵 需要的4个音频文件
+
+请下载以下4个MP3文件，并重命名为指定名称，放入 `audio` 文件夹中：
+
+### 1. focus-guqin.mp3（专注冥想 - 古琴）
+**搜索关键词：**
+- guqin music
+- chinese guqin meditation
+- 古琴纯音乐
+
+**推荐来源：**
+- Pixabay: https://pixabay.com/zh/music/search/guqin/
+- Freesound: https://freesound.org/search/?q=guqin
+
+---
+
+### 2. relax-rain.mp3（放松冥想 - 雨声）
+**搜索关键词：**
+- rain sounds
+- forest rain
+- 雨声白噪音
+
+**推荐来源：**
+- Pixabay: https://pixabay.com/zh/music/search/rain/
+- Freesound: https://freesound.org/search/?q=rain
+
+---
+
+### 3. sleep-chant.mp3（睡眠冥想 - 轻音乐）
+**搜索关键词：**
+- zen music
+- sleep meditation
+- 轻音乐 睡眠
+
+**推荐来源：**
+- Pixabay: https://pixabay.com/zh/music/search/meditation/
+- Freesound: https://freesound.org/search/?q=meditation
+
+---
+
+### 4. gratitude-sing.mp3（感恩冥想 - 禅意吟唱）
+**搜索关键词：**
+- buddhist chant
+- om mantra
+- 禅意吟唱
+
+**推荐来源：**
+- Pixabay: https://pixabay.com/zh/music/search/chant/
+- Freesound: https://freesound.org/search/?q=chant
+
+---
+
+## 📥 下载步骤
+
+### Pixabay Audio（推荐，免费无版权）
+1. 打开 Pixabay Audio 链接
+2. 搜索对应关键词
+3. 找到喜欢的音频，点击下载
+4. 保存到电脑
+5. 重命名为指定的文件名
+6. 放入 `audio` 文件夹
+
+### Freesound
+1. 打开 Freesound 链接
+2. 注册/登录账号（免费）
+3. 搜索对应关键词
+4. 下载音频
+5. 重命名并放入 `audio` 文件夹
+
+---
+
+## ✅ 最终检查
+
+确保 `audio` 文件夹中有以下4个文件：
+
+```
+audio/
+├── focus-guqin.mp3
+├── relax-rain.mp3
+├── sleep-chant.mp3
+└── gratitude-sing.mp3
+```
+
+文件名必须完全一致！
+
+---
+
+## 🚀 开始使用
+
+1. 确认4个MP3文件已放入 `audio` 文件夹
+2. 双击 `index.html` 打开网页
+3. 点击任意冥想卡片
+4. 立即听到音乐！

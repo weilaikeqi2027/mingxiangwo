@@ -1,0 +1,25 @@
+# 音频文件说明
+
+请在此文件夹中放入以下4个音频文件（MP3格式）：
+
+## 需要准备的音频文件：
+
+1. **focus-guqin.mp3** - 专注冥想：古风古琴纯音乐
+2. **relax-rain.mp3** - 放松冥想：山林雨声白噪音
+3. **sleep-chant.mp3** - 睡眠冥想：轻柔禅音/低频禅意音乐
+4. **gratitude-sing.mp3** - 感恩冥想：古风吟唱/佛系轻柔吟唱
+
+## 音频来源建议（免费无版权）：
+
+- Pixabay Audio: https://pixabay.com/zh/music/
+- Freesound: https://freesound.org/
+- YouTube音频库
+
+## 文件命名必须严格一致：
+
+- focus-guqin.mp3
+- relax-rain.mp3  
+- sleep-chant.mp3
+- gratitude-sing.mp3
+
+将这些MP3文件放在与 index.html 同级的 audio 文件夹中即可！

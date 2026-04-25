@@ -1,0 +1,102 @@
+# 5分钟搞定音频下载（超详细步骤）
+
+## 🎵 快速方法（推荐）
+
+### 方法一：使用免费音频网站（最简单）
+
+#### 1. 打开 Pixabay Audio（免费无版权，无需注册）
+网址：https://pixabay.com/zh/music/
+
+#### 2. 下载4个音频文件
+
+---
+
+### ✅ 第1个音频：guqin.mp3（古琴）
+
+1. 在 Pixabay 搜索框输入：`guqin` 或 `chinese harp`
+2. 找到喜欢的古琴音乐
+3. 点击右侧的「免费下载」按钮
+4. 选择 MP3 格式下载
+5. 保存到电脑
+6. 重命名为：`guqin.mp3`
+7. 放入 `audio` 文件夹
+
+---
+
+### ✅ 第2个音频：yushan.mp3（雨声）
+
+1. 在 Pixabay 搜索框输入：`rain` 或 `rain sounds`
+2. 找到喜欢的雨声白噪音
+3. 点击右侧的「免费下载」按钮
+4. 选择 MP3 格式下载
+5. 保存到电脑
+6. 重命名为：`yushan.mp3`
+7. 放入 `audio` 文件夹
+
+---
+
+### ✅ 第3个音频：shuinian.mp3（禅音）
+
+1. 在 Pixabay 搜索框输入：`meditation` 或 `zen`
+2. 找到喜欢的冥想轻音乐
+3. 点击右侧的「免费下载」按钮
+4. 选择 MP3 格式下载
+5. 保存到电脑
+6. 重命名为：`shuinian.mp3`
+7. 放入 `audio` 文件夹
+
+---
+
+### ✅ 第4个音频：yinchang.mp3（吟唱）
+
+1. 在 Pixabay 搜索框输入：`chant` 或 `buddhist`
+2. 找到喜欢的吟唱音乐
+3. 点击右侧的「免费下载」按钮
+4. 选择 MP3 格式下载
+5. 保存到电脑
+6. 重命名为：`yinchang.mp3`
+7. 放入 `audio` 文件夹
+
+---
+
+## 📋 最终检查
+
+确保 `audio` 文件夹中有以下4个文件：
+
+```
+audio/
+├── guqin.mp3
+├── yushan.mp3
+├── shuinian.mp3
+└── yinchang.mp3
+```
+
+文件名必须完全一致！
+
+---
+
+## 🚀 开始使用
+
+1. 确认4个MP3文件已放入 `audio` 文件夹
+2. 双击 `index.html` 打开网页
+3. 点击任意冥想卡片
+4. 立即听到音乐！
+
+---
+
+## 💡 备选方案
+
+如果 Pixabay 无法访问，可以使用：
+
+- **Freesound**：https://freesound.org/（需要免费注册）
+- **YouTube Audio Library**：https://www.youtube.com/audiolibrary（需要登录）
+
+---
+
+## ⏱️ 时间预估
+
+- 每个音频下载约 30 秒
+- 总共约 2-3 分钟
+- 5 分钟内一定能完成！
+
+祝您冥想愉快！🧘‍♀️
